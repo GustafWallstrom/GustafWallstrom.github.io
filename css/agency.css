@@ -586,9 +586,9 @@ header.masthead .intro-text .intro-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../img/map-image.png");
+  background-image: url("../img/Gustaf_cykel_black.jpg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 
 section#contact .section-heading {
