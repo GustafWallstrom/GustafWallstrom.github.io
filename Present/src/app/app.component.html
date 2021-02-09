@@ -1,0 +1,70 @@
+<main>
+
+  <div class="container">
+    <div id="innerdiv">
+      <ng-container *ngIf="locked">
+        <h2 class="title">Välkommen älskling till din presentsida!</h2>
+        <h4>Här är det vi som rattar.</h4>
+        <img id="title-img" src="../assets/images/Love&Gustaf.jpg">
+        <h3 class="title">Är det någon speciell dag idag?</h3>
+        <h4>Datum: {{whatDay()}}</h4>
+      </ng-container>
+
+      <ng-container *ngIf="day == 'special'; else ordinaryDay">
+        <div *ngIf="date == 'tomorrow' && locked">
+          <h4 id="right">Imorgon kan det vara en speciell dag...</h4>
+        </div>
+
+        <div *ngIf="date == 'heart' && locked">
+          <h4 id="right">Det är alla hjärtans dag <3</h4>
+        </div>
+      </ng-container>
+
+      <div>
+        <ng-template #ordinaryDay>
+          <h4 id="wrong">Nej det är en helt vanlig dag, kom tillbaka på en speciell dag.</h4>
+        </ng-template>
+      </div>
+
+      <button (click)="open()" *ngIf="locked">
+        Klicka här för att öppna din present
+      </button>
+
+      <h2 *ngIf="mock && locked">Försök inte!</h2>
+    </div>
+    <ng-container *ngIf="!locked && !correct">
+      <div class="gift" *ngIf="date=='heart'">
+        <h2>Grattis på alla hjärtans dag!</h2>
+        <h2>Quiz time!</h2>
+        
+        <img id="title-img" src="../assets/images/LoveGustaf2.jpg">
+        <div>
+          <h3>Svara på frågorna nedan för att låsa upp din present!</h3>
+          <form autocomplete="off">
+            <h4>Fråga 1: Vem har namnsdag på min födelsedag förutom Adela, Adele, Adelia, Adelina, Adla, Alida, Alina, Aline</h4>
+            <input name="answer1" id="answer1-input" type="text" [(ngModel)]="this.answer1" placeholder="Skriv namnet här(Stor bokstav först)">
+          </form>
+        </div>
+      
+        <button (click)="submit()">Jag är nöjd med mina svar!</button>
+        <h2 *ngIf="wrongAnswer">Nja, inte riktigt rätt</h2>
+
+      </div>
+    </ng-container>
+
+    <div class="gift" *ngIf="correct && date=='md'">
+      <h3>Lysande mamma, nu har du förtjänat presenten som jag har gömt HIHI</h3>
+      <img id="title-img" src="../assets/images/Lysande.jpg">    
+      <h4>Följ kartan</h4>
+      <img id="title-img" src="../assets/images/Karta.png"> 
+    </div>  
+
+    <div class="gift" *ngIf="correct && date=='bd'">
+      <h3>Bra jobbat världens bästa mamma och fru, Följ ledtråden för att hitta presenten!</h3>
+      <img id="gift-img" src="../assets/images/Balkong.jpg">
+    </div>
+      
+  </div>
+
+</main>
+<router-outlet></router-outlet>
